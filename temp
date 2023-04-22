@@ -1,0 +1,35 @@
+<table style="color: rgb(212, 196, 196); border: 1px sold blue">
+                                <tr>
+                                    <th>Route Number</th>
+                                    <th>Airline Name</th>
+                                    <th>Aircraft</th>
+                                    <th>Departure Airport</th>
+                                    <th>Arrival Airport</th>
+                                    <th>Deaparture Date and Time</th>
+                                    <th>Arrival date and time</th>
+                                    <th>Route Atatus</th>
+                                    <th>Changes</th>
+                                </tr>
+
+                             {% for route in all_routes %}
+
+                                 <tr>
+                                     <td>{{route.route_number}} </td>
+                                     <td>{{route.airline_name}}</td>
+                                     <td>{{route.flight}}</td>
+                                     <td>{{route.departure_airport}}</td>
+                                     <td>{{route.arrival_airport}}</td>
+                                     <td>{{route.departure_date}}{{route.departure_time}}</td>
+                                     <td>{{route.arrival_date}}{{route.arrival_time}}</td>
+                                     <td>{{route.status}}</td>
+                                     <td></td>
+                                 </tr>
+
+                             {% endfor %}
+                            </table>
+
+
+
+                            <!-- nreKC -->
+
+                            action="{%url 'update_reshedule_flight' %}"

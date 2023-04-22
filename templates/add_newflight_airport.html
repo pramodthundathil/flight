@@ -1,0 +1,91 @@
+{% extends "airport.html" %}
+{% block content %}
+<div class="col-md-5 col-md-offset-1">
+    <section id="first-tab-group" class="tabgroup">
+        <div id="tab1">
+            <div class="submit-form">
+                <h4>Shedule Flight</em>:</h4>
+                {% for message in messages  %}
+                  <h3 style="color: Green;">{{message}}</h3>
+                {% endfor %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset>
+                            <label for="route_number">Route Number</label>
+                            <input type="text" name="route_number" placeholder="Route Number" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="flight_number">Flight Number</label>
+                                <input type="text" name="flight_number" placeholder="Flight Number" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="airline_name">Airline Name</label>
+                                <input type="text" name="airline_name" placeholder="Airline Name" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="flight">Flight</label>
+                                <input type="text" name="flight" placeholder="flight" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="departure_airport">Departure Airport</label>
+                                <input type="text" name="departure_airport" placeholder="Departure Airport" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="arrival_airport">Arrivel Airport</label>
+                                <input type="text" name="arrival_airport" placeholder="Arrivel Airport" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="departure_date">Departure Date</label>
+                                <input type="date" name="departure_date" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="departure_time">Departure Time</label>
+                                <input type="time" name="departure_time" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="arrival_date">Arrival Date</label>
+                                <input type="date" name="arrival_date" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="arrival_time">Arrival Time</label>
+                                <input type="time" name="arrival_time" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+
+
+                        
+                        <div class="col-md-6">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="btn">Add Shedule</button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</section>
+</div>
+</div>
+</section>
+  
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "admin.html" %}
+{% block content %}
+<div class="col-md-5 col-md-offset-1">
+    <section id="first-tab-group" class="tabgroup">
+        <div id="tab1">
+            <div class="submit-form">
+                <h4><em>Enqury</em>:</h4>
+                {% for message in messages  %}
+
+                <h3 style="color: green;">{{message}}</h3>
+                  
+                {% endfor %}
+                <form id="form-submit" action="{%url 'replay' %}" method="POST">
+                    {% csrf_token %}
+                    
+                    {% for enq in enquery %}
+                            
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="subject">Enquery Subject:</label>
+                                <input type="text" name='subject' value = '{{enq.enquery_subject}}'  readonly  style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="subject">Enquery Airport:</label><br><br>
+                                <select name="airport" id="" style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                                    <option value="{{enq.enquery_airport}}">{{enq.enquery_airport}}</option>
+                                    
+                                </select>
+                            </fieldset>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="enquery">ASK:</label>
+                                <input type="text" name="enquery" value = {{enq.enquery_enquery}} required style="background-color: rgb(206, 204, 204); border:none; padding:2px; width:200px; height:200px; border-radius: 5px">
+                             </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="replay_to">Replay :</label>
+                                <input type="text" name="replay_to" required style="background-color: rgb(206, 204, 204); border:none; padding:2px; width:200px; height:200px; border-radius: 5px">
+                             </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                
+                                <button type="submit" name= "replay_no" id="form-submit" value="{{enq.serial_number}}" class="btn">Replay</button>
+                            </fieldset>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+</section>
+{% endblock %}

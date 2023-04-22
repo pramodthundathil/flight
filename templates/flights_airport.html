@@ -1,0 +1,24 @@
+{% extends "airport.html" %}
+{% block content %}
+
+<div class="col-md-5 col-md-offset-1">
+    <section id="first-tab-group" class="tabgroup">
+        <div id="tab1">
+            <div class="submit-form">
+                <h4><em>Flight Management</em>:</h4>
+                <form id="form-submit" method="POST">
+                    <div class="row">
+                        <link rel="stylesheet" href="{%static 'css/new_styles.css' %">
+                        <h3> <a href="{%url 'add_flight_airport' %}" style="color: gray; background-color:#d3b53f; font-family: 'Open Sans', arial, sans-serif; padding:20px; border-radius: 5px; padding-right: 174px"> SHEDULE ROUTE</a></h3><br>
+                        <h3> <a href="{%url 'sheduled_route_update_airport'%}" style="color: gray; background-color:#d3b53f; font-family: 'Open Sans', arial, sans-serif; padding:20px; border-radius: 5px; padding-right: 59px"> UPDATE SHEDULED ROUTE</a></h3><br>
+                        <h3> <a href="#" style="color: gray; background-color:#d3b53f; font-family: 'Open Sans', arial, sans-serif; padding:20px; border-radius: 5px; padding-right: 67px"> DELETE SHEDULED ROUTE</a></h3><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+</section>
+  
+{% endblock  %}

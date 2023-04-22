@@ -1,0 +1,149 @@
+{% extends "admin.html" %}
+{% load static %}
+{% block content %}
+<div class="col-md-5 col-md-offset-1">
+    <section id="first-tab-group" class="tabgroup">
+        <div id="tab1">
+            <div class="submit-form">
+                <h4>Shedule Flight</em>:</h4>
+                {% for message in messages  %}
+                  <h3 style="color: Green;">{{message}}</h3>
+                {% endfor %}
+                <form action="{%url 'update_reshedule_flight' %}" method="POST">
+                    {% csrf_token %}
+                    {% for val in route  %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset>
+                            <label for="route_number">Route Number</label>
+                            <input type="text" name="route_number" placeholder="Route Number" value='{{val.route_number}}' required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="flight_number">Flight Number</label>
+                                <input type="text" name="flight_number" placeholder="Flight Number" value='{{val.flight_number}}'required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="airline_name">Airline Name</label>
+                                <input type="text" name="airline_name" placeholder="Airline Name" required value='{{val.airline_name}}' style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="flight">Flight</label>
+                                <input type="text" name="flight" placeholder="flight" required value='{{val.flight}}' style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="departure_airport">Departure Airport</label>
+                                <input type="text" name="departure_airport" placeholder="Departure Airport" required value='{{val.departure_airport}}' style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="arrival_airport">Arrivel Airport</label>
+                                <input type="text" name="arrival_airport" placeholder="Arrivel Airport" required value='{{val.arrival_airport}}' style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="departure_date">Departure Date</label>
+                                <input type="date" name="departure_date" required value='{{val.departure_date}}' style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="departure_time">Departure Time</label>
+                                <input type="time" name="departure_time" required value='{{val.departure_time}}' style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="arrival_date">Arrival Date</label>
+                                <input type="date" name="arrival_date" required value='{{val.arrival_date}}' style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="arrival_time">Arrival Time</label>
+                                <input type="time" name="arrival_time" required  value='{{val.arrival_time}}' style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="flight_delay">Delay Time</label>
+                                <input type="time" name="flight_delay" required style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="flight_delay">Serial Number</label>
+                                <input type="number" name ='s_no' readonly value="{{val.serial_number}}" style="background-color: rgb(206, 204, 204); border:none; padding:10px; width:200px; border-radius: 5px">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <button type="submit" id="form-submit"  class="btn">ReShedule</button>
+                            </fieldset>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+</section>
+</div>
+</div>
+</section>
+
+<!-- <div class="tabs-content" id="weather">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h2>Sheduled Flights</h2>
+                    <link rel="stylesheet" href="{%static 'css/new_styles.css'%}">
+                    <table style="color: rgb(212, 196, 196); padding: 10px 20px 10px 10px; border: 1px sold blue; border-collapse: collapse;">
+                        <tr style="color: rgb(212, 196, 196);padding: 10px 20px 10px 10px; border: 1px sold blue;">
+                            <th style="padding-right: 10px;">Route Number</th>
+                            <th style="padding-right: 10px;">Airline Name</th>
+                            <th style="padding-right: 10px;">Aircraft</th>
+                            <th style="padding-right: 10px;">Departure Airport</th>
+                            <th style="padding-right: 10px;">Arrival Airport</th>
+                            <th style="padding-right: 10px;">Deaparture Date and Time</th>
+                            <th style="padding-right: 10px;">Arrival date and time</th>
+                            <th style="padding-right: 10px;">Route Status</th>
+                            <th style="padding-right: 10px;">Changes</th>
+                        </tr>
+
+                    {% for route in all_routes %}
+
+                        <tr style="color:cornflowerblue">
+                            <td style="padding-right: 10px;">{{route.route_number}} </td>
+                            <td style="padding-right: 10px;">{{route.airline_name}}</td>
+                            <td style="padding-right: 10px;">{{route.flight}}</td>
+                            <td style="padding-right: 10px;">{{route.departure_airport}}</td>
+                            <td style="padding-right: 10px;">{{route.arrival_airport}}</td>
+                            <td style="padding-right: 10px;">{{route.departure_date}}{{route.departure_time}}</td>
+                            <td style="padding-right: 10px;">{{route.arrival_date}}{{route.arrival_time}}</td>
+                            <td style="padding-right: 10px;">{{route.flight_status}}</td>
+                            <form action="{%url 'reshedule_flight' %}" method = 'POST'>
+                                {% csrf_token %}
+                                <td style="padding-right: 10px;"><button type ='submit' name='submit' value="{{route.serial_number}}" class="btn" style="padding: 5px;border:none;border-radius:5px;background-color:#ffe165;color:black">Reshedule</button></td>
+                            </form>
+                        </tr><br>
+
+                    {% endfor %}
+                    </table> <br><br><br>                                 
+                                                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+     -->
+{% endblock content %}

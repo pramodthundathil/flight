@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="col-md-5 col-md-offset-1">
+    <section id="first-tab-group" class="tabgroup">
+        <div id="tab1">
+            <div class="submit-form">
+                <h4><em>Flight Status</em>:</h4>
+                <form id="form-submit" method="POST">
+                    <div class="row">
+                        <div class="col-md-6"> 
+                            {% for val in route %}                                
+                            <fieldset>
+                                <h3><b>{{val.departure_airport}}</b></h3>
+                                <h4><h5><h6> <b><i class="fas fa-plane-departure    "></i>Departure</b></h6>{{val.departure_date}}</h5><b><br>{{val.departure_time}}</b></h4>
+                                <h3><b>↓</b></h3>
+                                <h5><h6> <b><i class="fas fa-plane-arrival    "></i>Arrival</b></h6>{{val.arrival_date}}</h5><b><br>{{val.arrival_time}}</b><br> 
+                                <h3><b>{{val.arrival_airport}}</b></h3>
+                                
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">                              
+                            <fieldset>
+                                <label for="flight_number">Flight Number: {{val.flight_number}}</label><br><br><br>
+                                <label for="flight_number1">Airline: {{val.airline_name}}</label>
+                                <h4><h5>Flight Status:</h5> <b style="background-color: rgb(236, 236, 161); padding:5px; border-radius:5px">{{val.flight_status}}</b></h4>
+                                <h5>Aircraft: <b>{{val.flight}}</b></h5>
+                            </fieldset>
+                            {% endfor %}
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+</section>
+{% endblock %}

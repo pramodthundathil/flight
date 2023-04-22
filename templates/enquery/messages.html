@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="col-md-5 col-md-offset-1">
+    <section id="first-tab-group" class="tabgroup">
+        <div id="tab1">
+            <div class="submit-form">
+                <h4><em>Enqury</em>:</h4>
+                {% for message in messages  %}
+
+                <h3 style="color: green;">{{message}}</h3>
+                  
+                {% endfor %}
+                <form id="form-submit" action="{%url 'replay' %}" method="POST">
+                    {% csrf_token %}
+                    
+                    {% for item in message %}
+                            
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="subject">Enquery Subject:</label><br><br>
+                                <h3>{{item.enquery_subject}}'</h3>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <label for="subject">Enquery Airport:</label><br><br>
+                                {{item.enquery_airport}} 
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <br><br><br><br><label for="subject">Enquery:</label><br><br>
+                                <p>{{item.enquery_enquery}}</p>
+                                <p><b>Time:</b>{{item.enquery_date}}</p>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6" style="color: rgb(109, 109, 238);">
+                            <fieldset>
+                                <label for="subject">Replay Message:</label><br><br>
+                                <p>{{item.enquery_answer}}</p>
+                                <p><b>Time:</b>{{item.answer_date}}</p>
+                                
+                                </select>
+                            </fieldset>
+                        </div>
+                        
+                        
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+</section>
+  
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "admin.html" %}
+
+{% block content %}
+
+<div class="col-md-5 col-md-offset-1">
+    <section id="first-tab-group" class="tabgroup">
+        <div id="tab1">
+            <div class="submit-form">
+                <h4><em>Enqueries :</em></h4>
+                {% for message in messages  %}
+                <h3 style="color: red;">{{message}}</h3>
+                {% endfor %}
+
+               
+                    {% csrf_token %}
+                    {% for enquery in enqueries  %}
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                            <fieldset>
+                                <h3><b>{{enquery.enquery_subject}}</b></h3>
+                                <h5 style="background-color: aqua;">{{enquery.enquery_enquery}}</h5>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <h6>from <b>{{enquery.referrences}}</b> to <b>{{enquery.enquery_airport}}</b></h6>
+                                <p><b>Enquery date:</b>{{enquery.enquery_date}}</p>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <form action="{%url 'repaly_to_enquery_admin' %}" method = "post">
+                                    {% csrf_token %}
+                                    <button type="submit" name='replay' id="form-submit" value="{{enquery.serial_number}}" class="btn">Repaly</button>
+                                </form>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <form action="{%url 'delete_enquery_admin'%}" method = "post">
+                                    {% csrf_token %}
+                                    <button type="submit" name='delete' id="form-submit" value="{{enquery.serial_number}}" class="btn">Delete</button>
+                                </form>
+                            </fieldset>
+                        </div> 
+                    </div>
+                    ----------------------------------------------------------------------------------------
+                        {% endfor %} 
+                
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+</section>
+    
+{% endblock %}
