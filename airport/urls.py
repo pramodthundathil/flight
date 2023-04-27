@@ -12,4 +12,6 @@ urlpatterns = [
     path("BookFlight/<int:pk>",views.BookFlight,name="BookFlight"),
     path("MyBooking",views.MyBooking,name="MyBooking"),
     path("CancelBooking/<int:pk>",views.CancelBooking,name="CancelBooking"),
+    path("Success",views.Success,name="Success"),
+    path("Makepayment",views.Makepayment,name="Makepayment")
 ]

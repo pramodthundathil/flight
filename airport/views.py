@@ -9,6 +9,15 @@ from travel.models import Route_shedule
 from register_login.forms import UserRegistration
 from travel.forms import BookingForm
 from travel.models import Bookings
+import razorpay
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from django.template.loader import render_to_string
+from django.http import HttpResponseBadRequest
+
+razorpay_client = razorpay.Client(
+  auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
+
 
 # Create your views here.
 # manage airport views...........
@@ -88,13 +97,43 @@ def BookFlight(request,pk):
             data.filght = val
             data.save()
             messages.info(request,"Booking Confirmed")
-            return redirect("index")
+            return redirect("Makepayment")
     
     context = {
         "val":val,
         "form":form
     }
     return render(request,"bookingconfirmation.html",context)
+
+def Makepayment(request):
+    currency = 'INR'
+    amount = 1000 * 100 # Rs. 200
+    context = {}
+
+  # Create a Razorpay Order Pyament Integration.....
+    razorpay_order = razorpay_client.order.create(dict(amount=amount,
+                          currency=currency,
+                          payment_capture='0'))
+
+  # order id of newly created order.
+    razorpay_order_id = razorpay_order["id"]
+    callback_url = "http://127.0.0.1:8000/airportSuccess"
+
+  # we need to pass these details to frontend.
+    
+    context['razorpay_order_id'] = razorpay_order_id
+    context['razorpay_merchant_key'] = settings.RAZOR_KEY_ID
+    context['razorpay_amount'] = amount
+    context['currency'] = currency
+    context['callback_url'] = callback_url 
+    context['slotid'] = "1",
+    
+    return render(request,"Makepayment.html",context)
+
+@csrf_exempt
+def Success(request):
+    messages.info(request,"Booking Confirmed")
+    return redirect("index")
 
 def MyBooking(request):
     Booking = Bookings.objects.filter(user = request.user)
